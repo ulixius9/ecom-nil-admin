@@ -1,21 +1,21 @@
 ### REST APIs for admin
 * This site is live [here](https://ecom-nil-admin.herokuapp.com/)
 ---
-#### Routes
-
-* `/` -> `GET` -> Give Server status
-* `/admin/api/customers` -> `GET` -> Retrive all customers data from Database
-* `/admin/api/customers/:id` -> `GET` -> Retrive a particular Customer Data
-* `/admin/api/customers` -> `POST` -> Add a Customer to Database
-* `/admin/api/customers/:id` -> `PUT` -> Update a Customer data on Database
-* `/admin/api/customers/:id` -> `DELETE` -> Delete a Customer from Database
-* `/admin/api/customers/count` -> `GET` -> Retrive total Counts of Customers on Database
-* `/admin/api/customers/:id/orders` -> `GET` -> Retrive all orders for a particular Customer
-
-#### Demo JSON data for `POST`, `PUT` requests
+| Route | Request Type | Response Data |
+|---|---|---|
+|`/` | GET` | Give Server status |
+|`/admin/api/customers` | GET` | Retrive all customers data from Database |
+|`/admin/api/customers/:id` | GET` | Retrive a particular Customer Data |
+|`/admin/api/customers` | POST` | Add a Customer to Database | 
+|`/admin/api/customers/:id` | PUT` | Update a Customer data on Database |
+|`/admin/api/customers/:id` | DELETE` | Delete a Customer from Database |
+|`/admin/api/customers/count` | GET` | Retrive total Counts of Customers on Database |
+|`/admin/api/customers/:id/orders` | GET` | Retrive all orders for a particular Customer |
 ---
+#### Demo JSON data for `POST`, `PUT` requests
+
 * `/admin/api/customers` -> `POST`
-### JSON Data:
+##### JSON Data:
 ```
 {
   "customer": {
@@ -38,9 +38,8 @@
   }
 }
 ``` 
----
 * `/admin/api/customers/:id` -> `PUT`
-### JSON Data:
+##### JSON Data:
 ```
 {
   "customer": {
@@ -66,4 +65,3 @@
   }
 }
 ```
----
