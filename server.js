@@ -9,20 +9,19 @@ connectDB();
 app.use(express.json({extended: false}));
 app.use(express.urlencoded({extended: true}));
 
+// PORT Setup
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, process.env.IP,() => {
+    console.log(`Server started on port ${PORT}`);
+});
 
 // Index Route
 app.get('/', (req, res) => {
     res.status(200).json({
-        msg:'Server is Connected'
+        msg:`Server is Connected and started on port ${PORT}`
     });
 });
 
 // Routes
 app.use('/admin/api', require('./routes/admins'));
 
-
-// PORT Setup
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, process.env.IP,() => {
-    console.log(`Server started on port ${PORT}`);
-});
