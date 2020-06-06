@@ -1,5 +1,6 @@
 ### REST APIs for admin
-
+* This site is live [here](https://ecom-nil-admin.herokuapp.com/)
+---
 #### Routes
 
 * `/` -> `GET` -> Give Server status
