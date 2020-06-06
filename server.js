@@ -1,30 +1,28 @@
 const express = require('express');
 const app = express();
-const mongoose = require('mongoose');
+const connectDB = require('./config/db');
 
-mongoose.connect('mongodb://localhost/gitlab',{
-    useCreateIndex: true,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
-}).then(()=> console.log('MongoDB connected..........'))
-.catch(err=>console.log('Refused To connect'));
+// MongoDB Connection
+connectDB();
 
-app.use(express.json({extended: true}));
+// Body Parser Setup
+app.use(express.json({extended: false}));
 app.use(express.urlencoded({extended: true}));
 
 
+// Index Route
 app.get('/', (req, res) => {
     res.status(200).json({
         msg:'Server is Connected'
     });
 });
 
+// Routes
 app.use('/admin/api', require('./routes/admins'));
 
 
-const PORT = process.env.PORT || 7000;
-
+// PORT Setup
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, process.env.IP,() => {
     console.log(`Server started on port ${PORT}`);
 });

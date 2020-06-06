@@ -5,9 +5,18 @@ const { v4: uuidv4 } = require('uuid');
 const customerSchema = mongoose.Schema({
     accepts_marketing:{
         type: Boolean,
+        default: false,
     },
     accepts_marketing_updated_at:{
         type: Date
+    },
+    tags:{
+        type: String,
+        default: '',
+    },
+    note:{
+        type: String,
+        default: '',
     },
     addresses:[
         {
@@ -18,11 +27,11 @@ const customerSchema = mongoose.Schema({
             },
             first_name:{
                 type: String,
-                required:true
+
             },
             last_name:{
                 type: String,
-                required:true
+
             },
             address1:{
                 type: String,
@@ -30,25 +39,20 @@ const customerSchema = mongoose.Schema({
             },
             address2:{
                 type: String,
+                default: null
             },
             city:{
                 type: String,
-                required:true
+
             },
             country:{
                 type: String,
-                required:true
+
             },
             zip: {
                 type: String,
             },
             phone: {
-                type: String
-            },
-            country_code: {
-                type: String
-            },
-            country_name: {
                 type: String
             },
             default: {
@@ -59,47 +63,35 @@ const customerSchema = mongoose.Schema({
     ],
     created_at:{
         type: Date,
-        default: Date.now
+        default: Date.now()
     },
     default_address:{
+        customer_id:{
+            type: String
+        },
         first_name:{
             type: String,
-            required:true
         },
         last_name:{
             type: String,
-            required:true
         },
         address1:{
             type: String,
-            required: true
         },
         address2:{
             type: String,
         },
         city:{
             type: String,
-            required:true
         },
         country:{
             type: String,
-            required:true
         },
         zip: {
             type: String,
         },
         phone: {
             type: String
-        },
-        country_code: {
-            type: String
-        },
-        country_name: {
-            type: String
-        },
-        default: {
-            type: Boolean,
-            default: true
         }
     },
     email:{
@@ -107,12 +99,10 @@ const customerSchema = mongoose.Schema({
         unique: true
     },
     first_name:{
-        type: String,
-        required:true
+        type: String
     },
     last_name:{
-        type: String,
-        required:true
+        type: String
     },
     last_order_id:{
         type: mongoose.Schema.Types.ObjectId,
@@ -125,7 +115,7 @@ const customerSchema = mongoose.Schema({
             type: String,
         }
     },
-    orders_count:[{
+    orders:[{
         type: mongoose.Schema.Types.ObjectId,
         ref:"Order"
     }],
@@ -133,7 +123,7 @@ const customerSchema = mongoose.Schema({
         type: String
     },
     verified_email:{
-        type: String
+        type: Boolean
     },
     updated_at:{
         type: Date
