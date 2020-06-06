@@ -7,7 +7,7 @@ const { check, validationResult } = require('express-validator');
 // @ Type -> Private Route
 // @ Route -> /admin/api/<______>
 // @ desc -> GET all customers
-router.get('/', async(req, res) => {
+router.get('/customers', async(req, res) => {
     try{
         const customers = await Customer.find();
         res.status(200).json({customers});
@@ -22,7 +22,7 @@ router.get('/', async(req, res) => {
 // @ Type -> Private Route
 // @ Route -> /admin/api/:id
 // @ desc -> POST add a customer
-router.get('/:id', async(req, res) => {
+router.get('/customers/:id', async(req, res) => {
     try{
         const customer = await Customer.findById(req.params.id);
         res.status(200).json({customer});
@@ -37,7 +37,7 @@ router.get('/:id', async(req, res) => {
 // @ Type -> Public Route
 // @ Route -> /admin/api/<______>
 // @ desc -> POST add a customer
-router.post('/',[
+router.post('/customers',[
     check('customer.first_name', 'Please Provide a First Name').not().isEmpty(),
     check('customer.last_name', 'Please Provide a Last Name').not().isEmpty(),
     check('customer.email', 'Please enter a Valid Email').isEmail(),
