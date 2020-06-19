@@ -1,133 +1,131 @@
-const mongoose = require('mongoose');
-const { v4: uuidv4 } = require('uuid');
-
+const mongoose = require("mongoose");
+const { v4: uuidv4 } = require("uuid");
 
 const customerSchema = mongoose.Schema({
-    accepts_marketing:{
+  accepts_marketing: {
+    type: Boolean,
+    default: false,
+  },
+  accepts_marketing_updated_at: {
+    type: Date,
+  },
+  tags: {
+    type: String,
+    default: "",
+  },
+  note: {
+    type: String,
+    default: "",
+  },
+  addresses: [
+    {
+      customer_id: {
+        type: String,
+        required: true,
+        default: uuidv4(),
+      },
+      first_name: {
+        type: String,
+      },
+      last_name: {
+        type: String,
+      },
+      address1: {
+        type: String,
+        required: true,
+      },
+      address2: {
+        type: String,
+        default: null,
+      },
+      city: {
+        type: String,
+      },
+      country: {
+        type: String,
+      },
+      zip: {
+        type: String,
+      },
+      phone: {
+        type: String,
+      },
+      default: {
         type: Boolean,
-        default: false,
+        default: true,
+      },
     },
-    accepts_marketing_updated_at:{
-        type: Date
+  ],
+  created_at: {
+    type: Date,
+    default: Date.now(),
+  },
+  default_address: {
+    customer_id: {
+      type: String,
     },
-    tags:{
-        type: String,
-        default: '',
+    first_name: {
+      type: String,
     },
-    note:{
-        type: String,
-        default: '',
+    last_name: {
+      type: String,
     },
-    addresses:[
-        {
-            customer_id:{
-                type: String,
-                required: true,
-                default: uuidv4()
-            },
-            first_name:{
-                type: String,
-
-            },
-            last_name:{
-                type: String,
-
-            },
-            address1:{
-                type: String,
-                required: true
-            },
-            address2:{
-                type: String,
-                default: null
-            },
-            city:{
-                type: String,
-
-            },
-            country:{
-                type: String,
-
-            },
-            zip: {
-                type: String,
-            },
-            phone: {
-                type: String
-            },
-            default: {
-                type: Boolean,
-                default: true
-            }
-        }
-    ],
-    created_at:{
-        type: Date,
-        default: Date.now()
+    address1: {
+      type: String,
     },
-    default_address:{
-        customer_id:{
-            type: String
-        },
-        first_name:{
-            type: String,
-        },
-        last_name:{
-            type: String,
-        },
-        address1:{
-            type: String,
-        },
-        address2:{
-            type: String,
-        },
-        city:{
-            type: String,
-        },
-        country:{
-            type: String,
-        },
-        zip: {
-            type: String,
-        },
-        phone: {
-            type: String
-        }
+    address2: {
+      type: String,
     },
-    email:{
-        type: String,
-        unique: true
+    city: {
+      type: String,
     },
-    first_name:{
-        type: String
+    country: {
+      type: String,
     },
-    last_name:{
-        type: String
+    zip: {
+      type: String,
     },
-    last_order_id:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Order"
-    },
-    last_order_name:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref:"Order",
-        name:{
-            type: String,
-        }
-    },
-    orders:[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref:"Order"
-    }],
     phone: {
-        type: String
+      type: String,
     },
-    verified_email:{
-        type: Boolean
+  },
+  email: {
+    type: String,
+    unique: true,
+  },
+  first_name: {
+    type: String,
+  },
+  last_name: {
+    type: String,
+  },
+  last_order_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Order",
+  },
+  last_order_name: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Order",
+    name: {
+      type: String,
     },
-    updated_at:{
-        type: Date
-    }
+  },
+  orders: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Order",
+    },
+  ],
+  phone: {
+    type: String,
+  },
+  verified_email: {
+    type: Boolean,
+  },
+  updated_at: {
+    type: Date,
+  },
+  password: String,
 });
 
 module.exports = mongoose.model("Customer", customerSchema);
